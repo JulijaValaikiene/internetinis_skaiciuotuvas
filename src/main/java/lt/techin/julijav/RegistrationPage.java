@@ -18,10 +18,13 @@ public class RegistrationPage extends BasePage {
     @FindBy(id = "password")
     WebElement registrationPasswordInput;
 
-    @FindBy(id = "passwordConfirm")
+    @FindBy(id = "id='username.errors'")
     WebElement registrationPasswordConfirmationInput;
     @FindBy(xpath = "//button[text()='Sukurti']")
     WebElement createNewUerButton;
+
+    @FindBy(id = "username.errors")
+    WebElement errorMessageOfRegistrationNameInput;
 
     public String getTextOfRegistrationElement() {
         return registrationElement.getText();
@@ -41,6 +44,8 @@ public class RegistrationPage extends BasePage {
 
     public void clickCreateNewUserButton() {
         createNewUerButton.click();
-
+    }
+    public String getTextErrorMessageOfRegistrationNameInput() {
+        return errorMessageOfRegistrationNameInput.getText();
     }
 }
