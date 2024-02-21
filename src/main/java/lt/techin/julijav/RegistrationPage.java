@@ -18,7 +18,7 @@ public class RegistrationPage extends BasePage {
     @FindBy(id = "password")
     WebElement registrationPasswordInput;
 
-    @FindBy(id = "id='username.errors'")
+    @FindBy(id = "passwordConfirm")
     WebElement registrationPasswordConfirmationInput;
     @FindBy(xpath = "//button[text()='Sukurti']")
     WebElement createNewUerButton;

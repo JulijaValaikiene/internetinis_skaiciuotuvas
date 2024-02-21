@@ -1,22 +1,17 @@
 package lt.techin.julijav;
 
 import ch.qos.logback.classic.Logger;
-
-
+import lt.techin.julijav.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationPageTest extends BasePageTest {
     LoginPage loginPage;
     RegistrationPage registrationPage;
-    SuccessfullyRegistrationPage successfullyRegistrationPage;
-    String userName = "Marta";
+    UserAccountPage successfullyRegistrationPage;
     String existingUserName = "Marta";
-
     String userPassword = "Marta159";
     private final Logger log = (Logger) LoggerFactory.getLogger(RegistrationPageTest.class);
 
@@ -25,7 +20,7 @@ public class RegistrationPageTest extends BasePageTest {
 
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        successfullyRegistrationPage = new SuccessfullyRegistrationPage(driver);
+        successfullyRegistrationPage = new UserAccountPage(driver);
 
         String expectedLoginElementText = "Prisijungimas";
         String actualLoginElementText = loginPage.getTextOfLoginElement();
@@ -34,7 +29,7 @@ public class RegistrationPageTest extends BasePageTest {
         String expectedRegElementText = "Naujos paskyros sukūrimas";
         String actualRegElementText = registrationPage.getTextOfRegistrationElement();
         assertEquals(expectedRegElementText, actualRegElementText, "Registration page element should have this text" + expectedRegElementText);
-        registrationPage.enterRegistrationNameInput(userName);
+        registrationPage.enterRegistrationNameInput(TestUtils.getRandomName());
         registrationPage.enterRegistrationPasswordInput(userPassword);
         registrationPage.enterRegistrationPasswordConfirmationInput(userPassword);
         registrationPage.clickCreateNewUserButton();
@@ -49,7 +44,7 @@ public class RegistrationPageTest extends BasePageTest {
 
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        successfullyRegistrationPage = new SuccessfullyRegistrationPage(driver);
+        successfullyRegistrationPage = new UserAccountPage(driver);
 
         String expectedLoginElementText = "Prisijungimas";
         String actualLoginElementText = loginPage.getTextOfLoginElement();
@@ -62,7 +57,7 @@ public class RegistrationPageTest extends BasePageTest {
         registrationPage.clickCreateNewUserButton();
         String expectedErrorRegNameText = "Toks vartotojo vardas jau egzistuoja";
         String actualErrorRegNameText = registrationPage.getTextErrorMessageOfRegistrationNameInput();
-        assertEquals(expectedErrorRegNameText, actualErrorRegNameText, "Registration page element should have this text" + expectedErrorRegNameText);
+        assertEquals(expectedErrorRegNameText, actualErrorRegNameText, "Registration error message by entering existing user should have this text" + expectedErrorRegNameText);
         log.info("Existing User Registration Test is successfully done!");
     }
 
