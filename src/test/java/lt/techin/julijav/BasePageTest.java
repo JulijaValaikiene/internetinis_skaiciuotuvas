@@ -39,7 +39,7 @@ public class BasePageTest {
     @AfterEach
     void tearDown() {
         if (driver != null) {
-//            driver.quit();
+            driver.quit();
 //            log.info("WebDriver closed");
         }
     }

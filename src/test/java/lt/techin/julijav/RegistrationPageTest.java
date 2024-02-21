@@ -12,7 +12,6 @@ public class RegistrationPageTest extends BasePageTest {
     RegistrationPage registrationPage;
     UserAccountPage successfullyRegistrationPage;
     String existingUserName = "Marta";
-    String userPassword = "Marta159";
     private final Logger log = (Logger) LoggerFactory.getLogger(RegistrationPageTest.class);
 
     @Test
@@ -30,13 +29,14 @@ public class RegistrationPageTest extends BasePageTest {
         String actualRegElementText = registrationPage.getTextOfRegistrationElement();
         assertEquals(expectedRegElementText, actualRegElementText, "Registration page element should have this text" + expectedRegElementText);
         registrationPage.enterRegistrationNameInput(TestUtils.getRandomName());
+        String userPassword = TestUtils.getRandomPassword();
         registrationPage.enterRegistrationPasswordInput(userPassword);
         registrationPage.enterRegistrationPasswordConfirmationInput(userPassword);
         registrationPage.clickCreateNewUserButton();
 //        String expectedSuccessfulRegButtonText = "skaičiuoti";
 //        String actualSuccessfulRegButtonText = successfullyRegistrationPage.getTextOfCalculateButton();
 //        assertEquals(expectedSuccessfulRegButtonText, actualSuccessfulRegButtonText, "Successful Registration page button should have this text" + expectedSuccessfulRegButtonText);
-        log.info("Registration is successfully done!");
+        log.info("Registration with random User name and random password is successfully done!");
     }
 
     @Test
